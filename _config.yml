@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Loki
+title: Loki_Blog
 subtitle: ''
 description: 'javascript,react,frontend,learn,grow,typescript'
 keywords:
-author: John Doe
+author: ljq0226
 # language: en
 language: zh-CN
 timezone: 'Asia/Shanghai'
