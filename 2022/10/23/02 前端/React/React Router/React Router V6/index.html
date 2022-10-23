@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/luok_blog/img/fluid.png">
+  <link rel="icon" href="/luok_blog/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="ljq0226">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Ultimate React Router v6 Guide React Router BasicsConfiguring The RouterTo get React Router working in your app, you need to render a router element at or near the root of your element tree. We provid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Loki_Blog">
+<meta property="og:url" content="https://ljq0226.github.io/luok_blog/2022/10/23/02%20%E5%89%8D%E7%AB%AF/React/React%20Router/React%20Router%20V6/index.html">
+<meta property="og:site_name" content="Loki_Blog">
+<meta property="og:description" content="Ultimate React Router v6 Guide React Router BasicsConfiguring The RouterTo get React Router working in your app, you need to render a router element at or near the root of your element tree. We provid">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://obs-pic-1309372570.cos.ap-chongqing.myqcloud.com/React%20Router%20V6.png">
+<meta property="article:published_time" content="2022-10-23T13:08:49.030Z">
+<meta property="article:modified_time" content="2022-10-23T13:08:49.030Z">
+<meta property="article:author" content="ljq0226">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://obs-pic-1309372570.cos.ap-chongqing.myqcloud.com/React%20Router%20V6.png">
+  
+  
+  
+  <title>Loki_Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/luok_blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/luok_blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/luok_blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"ljq0226.github.io","root":"/luok_blog/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/luok_blog/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/luok_blog/js/utils.js" ></script>
+  <script  src="/luok_blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/luok_blog/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/luok_blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/luok_blog/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/luok_blog/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/luok_blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/luok_blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/luok_blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-23 21:08" pubdate>
+          2022年10月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          150 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Ultimate-React-Router-v6-Guide"><a href="#Ultimate-React-Router-v6-Guide" class="headerlink" title="Ultimate React Router v6 Guide"></a>Ultimate React Router v6 Guide</h1><p><img src="https://obs-pic-1309372570.cos.ap-chongqing.myqcloud.com/React%20Router%20V6.png" srcset="/luok_blog/img/loading.gif" lazyload></p>
+<h2 id="React-Router-Basics"><a href="#React-Router-Basics" class="headerlink" title="React Router Basics"></a>React Router Basics</h2><h3 id="Configuring-The-Router"><a href="#Configuring-The-Router" class="headerlink" title="Configuring The Router"></a>Configuring The Router</h3><p>To get React Router working in your app, you need to render a router element at or near the root of your element tree. We provide several different routers depending on where your app is running.</p>
+<p> <code>&lt;BrowserRouter&gt;</code> or <code>&lt;HashRouter&gt;</code> should be used when running in a web browser (which one you pick depends on the style of URL you prefer or need)</p>
+<p>These routers provide the context that React Router needs to operate in a particular environment. Each one renders a <code>&lt;Router&gt;</code> internally, which you may also do if you need more fine-grained control for some reason. But it is highly likely that one of the built-in routers is what you need.</p>
+<h4 id="BrowserRouter"><a href="#BrowserRouter" class="headerlink" title="BrowserRouter"></a>BrowserRouter</h4><p> <code>&lt;BrowserRouter&gt;</code> is the <strong>recommended</strong> interface for running React Router in a web browser. A <code>&lt;BrowserRouter&gt;</code> stores the current location in the browser’s address bar using clean URLs and navigates using the browser’s built-in history stack.<br> <code>&lt;BrowserRouter window&gt;</code> defaults to using the current document’s <code>defaultView</code>, but it may also be used to track changes to another window’s URL, in an <code>&lt;iframe&gt;</code>, for example.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">ReactDOM</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-dom&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">BrowserRouter</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">BrowserRouter</span>&gt;</span></span><br><span class="language-xml">	&#123;/* The rest of your app goes here */&#125;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">BrowserRouter</span>&gt;</span></span>,<br>  root<br>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ad-tip">We strongly recommend you do not use `HashRouter` unless you absolutely have to.<br></code></pre></td></tr></table></figure>
+<h4 id="HashRouter"><a href="#HashRouter" class="headerlink" title="HashRouter"></a>HashRouter</h4><p> <code>&lt;HashRouter&gt;</code> is for use in web browsers when the URL should not (or cannot) be sent to the server for some reason. This may happen in some shared hosting scenarios where you do not have full control over the server. In these situations, <code>&lt;HashRouter&gt;</code> makes it possible to store the current location in the <code>hash</code> portion of the current URL, so it is never sent to the server.</p>
+<p> <code>&lt;HashRouter window&gt;</code> defaults to using the current <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/defaultView">document’s <code>defaultView</code></a>, but it may also be used to track changes to another window’s URL, in an <code>&lt;iframe&gt;</code>, for example.</p>
+<h3 id="Defining-Routes"><a href="#Defining-Routes" class="headerlink" title="Defining Routes"></a>Defining Routes</h3><p>Routing is the process of deciding which React elements will be rendered on a given page of your app, and how they will be nested. React Router provides two interfaces for declaring your routes.</p>
+<ul>
+<li><code>&lt;Routes&gt;</code>and <code>&lt;Route&gt;</code> if you’re using JSX</li>
+<li><code>useRoutes</code> if you’d prefer a JavaScript object-based config</li>
+</ul>
+<p>[[router-v6-detailed#Routing|more details]]</p>
+<h4 id="Routes-And-Route"><a href="#Routes-And-Route" class="headerlink" title="Routes And Route"></a>Routes And Route</h4><p> <code>&lt;Routes&gt;</code> and <code>&lt;Route&gt;</code> are the primary ways to render something in React Router based on the current <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#location"><code>location</code></a>. You can think about a <code>&lt;Route&gt;</code> kind of like an <code>if</code> statement; if its <code>path</code> matches the current URL, it renders its <code>element</code>! The <code>&lt;Route caseSensitive&gt;</code> prop determines if the matching should be done in a case-sensitive manner (defaults to <code>false</code>).</p>
+<p>Whenever the location changes, <code>&lt;Routes&gt;</code> looks through all its <code>children</code> <code>&lt;Route&gt;</code> elements to find the best match and renders that branch of the UI. <code>&lt;Route&gt;</code> elements may be nested to indicate nested UI, which also correspond to nested URL paths. Parent routes render their child routes by rendering an <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#outlet"><code>&lt;Outlet&gt;</code></a>.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Routes</span>&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Dashboard</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;messages&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">      <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">DashboardMessages</span> /&gt;</span>&#125;</span><br><span class="language-xml">    /&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;tasks&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">DashboardTasks</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;about&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">AboutPage</span> /&gt;</span>&#125; /&gt;</span><br>&lt;/<span class="hljs-title class_">Routes</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>The default <code>&lt;Route element&gt;</code> is an <code>&lt;Outlet&gt;</code>. This means the route will still render its children even without an explicit element prop, so you can nest route paths without nesting UI around the child route elements.</p>
+<p>For example, in the following config the parent route renders an <code>&lt;Outlet&gt;</code> by default, so the child route will render without any surrounding UI. But the child route’s path is /users/:id because it still builds on its parent.</p>
+<h4 id="useRoutes"><a href="#useRoutes" class="headerlink" title="useRoutes()"></a>useRoutes()</h4><p>The useRoutes hook is the <strong>functional equivalent</strong> of <code>&lt;Routes&gt;</code>, but it uses JavaScript objects instead of      <code>&lt;Route&gt;</code> elements to define your routes. These objects have the same properties as normal <code>&lt;Route&gt; </code>elements, but they don’t require JSX.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; useRoutes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">let</span> element = <span class="hljs-title function_">useRoutes</span>([<br>    &#123;<br>      <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;/&quot;</span>,<br>      <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Dashboard</span> /&gt;</span></span>,<br>      <span class="hljs-attr">children</span>: [<br>        &#123;<br>          <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;messages&quot;</span>,<br>          <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DashboardMessages</span> /&gt;</span></span>,<br>        &#125;,<br>        &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;tasks&quot;</span>, <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DashboardTasks</span> /&gt;</span></span> &#125;,<br>      ],<br>    &#125;,<br>    &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&quot;team&quot;</span>, <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">AboutPage</span> /&gt;</span></span> &#125;,<br>  ]);<br><br>  <span class="hljs-keyword">return</span> element;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>The return value of useRoutes is either a valid React element you can use to render the route tree, or null if nothing matched.</p>
+<h3 id="Handling-Navigation"><a href="#Handling-Navigation" class="headerlink" title="Handling Navigation"></a>Handling Navigation</h3><ul>
+<li>  <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#link"><code>&lt;Link&gt;</code></a> and <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#navlink"><code>&lt;NavLink&gt;</code></a> render an accessible <code>&lt;a&gt;</code> element, or a <code>TouchableHighlight</code> on React Native. This lets the user initiate navigation by clicking or tapping an element on the page.</li>
+<li>  <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#usenavigate"><code>useNavigate</code></a> and <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#navigate"><code>&lt;Navigate&gt;</code></a> let you programmatically navigate, usually in an event handler or in response to some change in state</li>
+</ul>
+<h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><p>A <code>&lt;Link&gt;</code> is an element that lets the user <strong>navigate to another page</strong> by clicking or tapping on it. In <code>react- router-dom</code>, a <code>&lt;Link&gt;</code> renders an accessible <code>&lt;a&gt;</code> element with a real <code>href</code> that points to the resource it’s linking to. This means that things like right-clicking a <code>&lt;Link&gt;</code> work as you’d expect. You can use <code>&lt;Link reloadDocument&gt;</code> to skip client side routing and let the browser handle the transition normally (as if it were an <code>&lt;a href&gt;</code>).</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Link</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">UsersIndexPage</span>(<span class="hljs-params">&#123; users &#125;</span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Users<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">        &#123;users.map((user) =&gt; (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;user.id&#125;</span>&gt;</span></span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&#123;user.id&#125;</span>&gt;</span>&#123;user.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">        ))&#125;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>A relative <code>&lt;Link to&gt;</code> value (that does not begin with <code>/</code>) resolves relative to the parent route, which means that it builds upon the URL path that was matched by the route that rendered that <code>&lt;Link&gt;</code>. It may contain <code>..</code> to link to routes further up the hierarchy. In these cases, <code>..</code> works exactly like the command-line <code>cd</code> function; each <code>..</code> removes one segment of the parent path.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ad-note">`&lt;Link to&gt;` with a `..` behaves differently from a normal `&lt;a href&gt;` when the current URL ends with `/`. `&lt;Link to&gt;` ignores the trailing slash, and removes one URL segment for each `..`. But an `&lt;a href&gt;` value handles `..` differently when the current URL ends with `/` vs when it does not.<br></code></pre></td></tr></table></figure>
+
+<h4 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h4><p>A <code>&lt;NavLink&gt;</code> is a special kind of <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#link"><code>&lt;Link&gt;</code></a> that knows whether or not it is “<strong>active</strong>“. This is useful when building a navigation menu such as a <strong>breadcrumb</strong> or <strong>a set of tabs</strong> where you’d like to show which of them is currently selected. It also provides useful context for assistive technology like screen readers.</p>
+<p>By default, an <code>active</code> class is added to a <code>&lt;NavLink&gt;</code> component when it is active. This provides the same simple styling mechanism for most users who are upgrading from v5. One difference as of <code>v6.0.0-beta.3</code> is that  <code>activeClassName</code> and <code>activeStyle</code> have been removed from <code>NavLinkProps</code>. Instead, you can pass a function to either <code>style</code> or <code>className</code> that will allow you to customize the inline styling or the class string based on the component’s active state. you can also pass a function as children to customize the content of the <code>&lt;NavLink&gt;</code> component based on their active state, specially useful to change styles on internal elements.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">NavLink</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">NavList</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// This styling will be applied to a &lt;NavLink&gt; when the</span><br>  <span class="hljs-comment">// route that it links to is currently selected.</span><br>  <span class="hljs-keyword">let</span> activeStyle = &#123;<br>    <span class="hljs-attr">textDecoration</span>: <span class="hljs-string">&quot;underline&quot;</span><br>  &#125;;<br><br>  <span class="hljs-keyword">let</span> activeClassName = <span class="hljs-string">&quot;underline&quot;</span><br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;messages&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;(&#123;</span> <span class="hljs-attr">isActive</span> &#125;) =&gt;</span></span><br><span class="language-xml">              isActive ? activeStyle : undefined</span><br><span class="language-xml">            &#125;</span><br><span class="language-xml">          &gt;</span><br><span class="language-xml">            Messages</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;tasks&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;(&#123;</span> <span class="hljs-attr">isActive</span> &#125;) =&gt;</span></span><br><span class="language-xml">              isActive ? activeClassName : undefined</span><br><span class="language-xml">            &#125;</span><br><span class="language-xml">          &gt;</span><br><span class="language-xml">            Tasks</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">NavLink</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;tasks&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">          &gt;</span></span><br><span class="language-xml">            &#123;(&#123; isActive &#125;) =&gt; (</span><br><span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;isActive</span> ? <span class="hljs-attr">activeClassName</span> <span class="hljs-attr">:</span> <span class="hljs-attr">undefined</span>&#125;&gt;</span></span><br><span class="language-xml">                Tasks</span><br><span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span><br><span class="language-xml">            ))&#125;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">NavLink</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Navigate"><a href="#Navigate" class="headerlink" title="Navigate"></a>Navigate</h4><p>A <code>&lt;Navigate&gt;</code> element changes the current location <strong>when it is rendered</strong>. It’s a component wrapper around <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api#usenavigate"><code>useNavigate</code></a>, and accepts all the same arguments as props.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Navigate</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">LoginForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> &#123;<br>  state = &#123; <span class="hljs-attr">user</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">error</span>: <span class="hljs-literal">null</span> &#125;;<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">handleSubmit</span>(<span class="hljs-params">event</span>) &#123;<br>    event.<span class="hljs-title function_">preventDefault</span>();<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-keyword">let</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(event.<span class="hljs-property">target</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123; user &#125;);<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123; error &#125;);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> &#123; user, error &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>;<br>    <span class="hljs-keyword">return</span> (<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">        &#123;error &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;error.message&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>&#125;</span><br><span class="language-xml">        &#123;user &amp;&amp; (</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/dashboard&quot;</span> <span class="hljs-attr">replace</span>=<span class="hljs-string">&#123;true&#125;</span> /&gt;</span></span><br><span class="language-xml">        )&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">form</span></span></span><br><span class="hljs-tag"><span class="language-xml">          <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">&#123;(event)</span> =&gt;</span> this.handleSubmit(event)&#125;</span><br><span class="language-xml">        &gt;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> /&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span> /&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>    );<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="useNavigate"><a href="#useNavigate" class="headerlink" title="useNavigate()"></a>useNavigate()</h4><p>The <code>useNavigate</code> hook returns a function that lets you navigate programmatically, for example after a form is submitted.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useNavigate &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">SignupForm</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">let</span> navigate = <span class="hljs-title function_">useNavigate</span>();<br><br>  <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleSubmit</span>(<span class="hljs-params">event</span>) &#123;<br>    event.<span class="hljs-title function_">preventDefault</span>();<br>    <span class="hljs-keyword">await</span> <span class="hljs-title function_">submitForm</span>(event.<span class="hljs-property">target</span>);<br>    <span class="hljs-title function_">navigate</span>(<span class="hljs-string">&quot;../success&quot;</span>, &#123; <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span> &#125;);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">&#123;handleSubmit&#125;</span>&gt;</span>&#123;/* ... */&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>The <code>navigate</code> function has two signatures:</p>
+<ul>
+<li>  Either pass a <code>To</code> value (same type as <code>&lt;Link to&gt;</code>) with an optional second <code>&#123; replace, state &#125;</code> arg or</li>
+<li>  Pass the delta you want to go in the history stack. For example, <code>navigate(-1)</code> is equivalent to hitting the back button.</li>
+</ul>
+<h2 id="Advanced-Route-Definitions"><a href="#Advanced-Route-Definitions" class="headerlink" title="Advanced Route Definitions"></a>Advanced Route Definitions</h2><p>This is where React Router really gets interesting. There is a lot of cool stuff you can do with routing to make more complex routes, easier to read, and overall much more functional. </p>
+<h3 id="Index-Routes"><a href="#Index-Routes" class="headerlink" title="Index Routes"></a>Index Routes</h3><p>Index routes can be thought of as “default child routes”. When a parent route has multiple children, but the URL is just at the parent’s path, you probably want to render something into the outlet.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Layout</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">index</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Activity</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;invoices&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoices</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;activity&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Activity</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Now at “/“ the <code>&lt;Activity&gt;</code> element will render inside the outlet.<br>You can have an index route at any level of the route hierarchy that will render when the parent matches but none of its other children do.</p>
+<h3 id="NotFound-Routes"><a href="#NotFound-Routes" class="headerlink" title="NotFound Routes"></a>NotFound Routes</h3><p>When no other route matches the URL, you can render a “not found” route using <code>path=&quot;*&quot;</code>. This route will match any URL, but will have the weakest precedence so the router will only pick it if no other routes match.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Home</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;dashboard&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Dashboard</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">NotFound</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Dynamic-Routing"><a href="#Dynamic-Routing" class="headerlink" title="Dynamic Routing"></a>Dynamic Routing</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Routes</span>&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Home</span> /&gt;</span>&#125; /&gt;</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/books&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">BookList</span> /&gt;</span>&#125; /&gt;</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/books/:id&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Book</span> /&gt;</span>&#125; /&gt;</span><br>&lt;/<span class="hljs-title class_">Routes</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>The final route in the above example is a dynamic route that has a dynamic parameter of :id. Defining dynamic routes in React Router is as simple as putting a colon in front of whatever you want the dynamic part of your route to be. In our case <em>our dynamic route will match any URL that starts with <code>/book</code> and ends with some value.</em> For example, <code>/books/1</code>, <code>/books/bookName</code>, and <code>/books/literally-anything</code> will all match our dynamic route.</p>
+<p>Pretty much always when you have a dynamic route like this you want to access the dynamic value in your custom component which is where the <em>useParams</em> hook comes in.</p>
+<h4 id="useParams"><a href="#useParams" class="headerlink" title="useParams()"></a>useParams()</h4><p>The <code>useParams</code> hook returns an object of key/value pairs of the dynamic params from the current URL that were matched by the <code>&lt;Route path&gt;</code>. Child routes inherit all params from their parent routes.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Routes</span>, <span class="hljs-title class_">Route</span>, useParams &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ProfilePage</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// Get the userId param from the URL.</span><br>  <span class="hljs-keyword">let</span> &#123; userId &#125; = <span class="hljs-title function_">useParams</span>();<br>  <span class="hljs-comment">// ...</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;users&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;:userId&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">ProfilePage</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;me&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;...&#125;</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Routing-Priority"><a href="#Routing-Priority" class="headerlink" title="Routing Priority"></a>Routing Priority</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Route</span> path=<span class="hljs-string">&quot;teams/:teamId&quot;</span> element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Team</span> /&gt;</span></span>&#125; /&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;teams/new&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">NewTeamForm</span> /&gt;</span>&#125; /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>In previous versions of React Router you had to order your routes a certain way to get the right one to render when multiple routes matched an ambiguous URL. V6 is a lot smarter and <em>will pick the most specific match</em> so you don’t have to worry about that anymore. For example, the URL <code>/teams/new </code>matches both of these route,But <code>teams/new</code> is a more specific match than <code>/teams/:teamId</code>, so <code>&lt;NewTeamForm /&gt;</code> will render.</p>
+<h3 id="Nested-Routes"><a href="#Nested-Routes" class="headerlink" title="Nested Routes"></a>Nested Routes</h3><p>This is one of the most powerful features of React Router making it so you don’t have to mess around with complicated layout code. The vast majority of your layouts are coupled to segments of the URL and React Router embraces this fully.<br>Routes can be nested inside one another, and their paths will nest too (child inheriting the parent).</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;invoices&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoices</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;:invoiceId&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoice</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;sent&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">SentInvoices</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>This route config defined three route paths:</p>
+<ul>
+<li>“/invoices”</li>
+<li>“/invoices/sent”</li>
+<li>“/invoices/:invoiceId”<br>Notice the inner component that changed with the URL (<code>&lt;SentInvoices&gt;</code> and <code>&lt;Invoice&gt;</code>). The parent route (<code>&lt;Invoices&gt;</code>) is responsible for making sure the matching child route is rendered with <code>&lt;Outlet&gt;</code>.<h4 id="Outlet"><a href="#Outlet" class="headerlink" title="Outlet"></a>Outlet</h4>An <code>&lt;Outlet&gt;</code> should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Routes</span>, <span class="hljs-title class_">Route</span>, <span class="hljs-title class_">Outlet</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;invoices&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoices</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;:invoiceId&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoice</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;sent&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">SentInvoices</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Invoices</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Invoices<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Outlet</span> /&gt;</span>//when there is a nested route,it will render to be nested router Element</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="Shared-Layouts"><a href="#Shared-Layouts" class="headerlink" title="Shared Layouts"></a>Shared Layouts</h4></li>
+</ul>
+<ol>
+<li><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Routes</span>&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Home</span> /&gt;</span>&#125; /&gt;</span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/books&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">BooksLayout</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">index</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">BookList</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;:id&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Book</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;new&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">NewBook</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">NotFound</span> /&gt;</span>&#125; /&gt;</span><br>&lt;/<span class="hljs-title class_">Routes</span>&gt;<br></code></pre></td></tr></table></figure></li>
+<li><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Route</span> element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">OtherLayout</span> /&gt;</span></span>&#125;&gt;<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/contact&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Contact</span> /&gt;</span>&#125; /&gt;</span><br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/about&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">About</span> /&gt;</span>&#125; /&gt;</span><br>  &lt;/<span class="hljs-title class_">Route</span>&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="useOutletContext"><a href="#useOutletContext" class="headerlink" title="useOutletContext()"></a>useOutletContext()</h4>Often parent routes manage state or other values you want shared with child routes. You can create your own context provider if you like, but this is such a common situation that it’s built-into <code>&lt;Outlet /&gt;</code>:<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Parent</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Outlet</span> <span class="hljs-attr">context</span>=<span class="hljs-string">&#123;[count,</span> <span class="hljs-attr">setCount</span>]&#125; /&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useOutletContext &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Child</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useOutletContext</span>();<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">setCount</span>(<span class="hljs-function">(<span class="hljs-params">c</span>) =&gt;</span> c + <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;increment&#125;</span>&gt;</span>&#123;count&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+If you’re using TypeScript, we recommend t<strong>he parent component provide a custom hook for accessing the context value</strong>. This makes it easier for consumers to get nice typings, control consumers, and know who’s consuming the context value. Here’s a more realistic example:<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> &#123; <span class="hljs-title class_">User</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./types&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Outlet</span>, useOutletContext &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><br><span class="hljs-keyword">type</span> <span class="hljs-title class_">ContextType</span> = &#123; <span class="hljs-attr">user</span>: <span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span> &#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Dashboard</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [user, setUser] = <span class="hljs-title class_">React</span>.<span class="hljs-property">useState</span>&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);<br><br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Dashboard<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Outlet</span> <span class="hljs-attr">context</span>=<span class="hljs-string">&#123;&#123;</span> <span class="hljs-attr">user</span> &#125;&#125; /&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">useUser</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> useOutletContext&lt;<span class="hljs-title class_">ContextType</span>&gt;();<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useUser &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../dashboard&quot;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">DashboardMessages</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; user &#125; = <span class="hljs-title function_">useUser</span>();<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Messages<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, &#123;user.name&#125;!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Multiple-Routes"><a href="#Multiple-Routes" class="headerlink" title="Multiple Routes"></a>Multiple Routes</h3></li>
+</ol>
+<p>Although you should only ever have a single <code>&lt;Router&gt;</code> in an app, you may have as many <a target="_blank" rel="noopener" href="https://reactrouter.com/en/v6.3.0/api.md#routes"><code>&lt;Routes&gt;</code></a> as you need, wherever you need them. Each <code>&lt;Routes&gt;</code> element operates independently of the others and picks a child route to render.</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Sidebar</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">MainNav</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Route</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;dashboard&quot;</span></span></span><br><span class="hljs-tag"><span class="language-xml">            <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">DashboardNav</span> /&gt;</span>&#125;</span><br><span class="language-xml">          /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Sidebar</span>&gt;</span></span><br><span class="language-xml"></span><br><span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">MainContent</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Home</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;about&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">About</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;support&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Support</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;dashboard&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Dashboard</span> /&gt;</span>&#125;&gt;</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;invoices&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Invoices</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;team&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">Team</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span></span><br><span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">element</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">NotFound</span> /&gt;</span>&#125; /&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Routes</span>&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">MainContent</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>equivalent 等效的<br>assistive 辅助的</p>
+<p>mechanism 机制</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://ljq0226.github.io/luok_blog/2022/10/23/02 前端/React/React Router/React Router V6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>ljq0226</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/luok_blog/2022/10/23/02%20%E5%89%8D%E7%AB%AF/%E5%85%B6%E5%AE%83/vite+React+Ts%20%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/luok_blog/2022/10/23/02%20%E5%89%8D%E7%AB%AF/React/React%20Router/router-v6-detailed/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/luok_blog/js/events.js" ></script>
+<script  src="/luok_blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/luok_blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/luok_blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/luok_blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
