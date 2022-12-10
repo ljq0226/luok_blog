@@ -9,8 +9,6 @@ tags:
 
 
 
-```toc
-```
 ![HTML面试题.png](https://cdn.nlark.com/yuque/0/2021/png/1500604/1621600195788-acab59b1-a654-4ec4-b9c2-0a491a660671.png#height=2156&id=u41bb8a4b&margin=%5Bobject%20Object%5D&name=HTML%E9%9D%A2%E8%AF%95%E9%A2%98.png&originHeight=2156&originWidth=2616&originalType=binary&ratio=1&size=637979&status=done&style=shadow&width=2616)
 ### 1. src和href的区别
 
